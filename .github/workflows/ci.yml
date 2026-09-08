@@ -395,7 +395,7 @@ jobs:
             sleep 10
           done
 
-            - name: Build SASS
+      - name: Build SASS
         run: php bin/console sass:build
 
 
