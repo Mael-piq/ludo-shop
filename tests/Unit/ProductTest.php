@@ -50,6 +50,4 @@ class ProductTest extends TestCase
 
         $this->assertFalse($product->isAvailable());
     }
-
-    
 }
