@@ -25,7 +25,6 @@ class PromotionServiceTest extends TestCase
         $this->assertFalse($this->service->isOnPromotion($product));
     }
 
-    
     public function testReturnsPromoPriceDuringPeriod(): void
     {
         $product = $this->createProduct(50.00, 40.00);
