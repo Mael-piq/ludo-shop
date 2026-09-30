@@ -31,3 +31,6 @@
 ###> node ###
 /node_modules/
 ###< node ###
+
+
+.idea
