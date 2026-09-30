@@ -56,19 +56,16 @@ abstract class FunctionalTestCase extends WebTestCase
         $container = $this->client->getContainer();
         $entityManager = $container->get('doctrine.orm.entity_manager');
         $connection = $entityManager->getConnection();
+
+        $dbPath = $connection->getParams()['path'] ?? null;
+
+        if ($dbPath && file_exists($dbPath)) {
+            $connection->close();
+            unlink($dbPath);
+        }
+
         $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($entityManager);
         $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
-
-        try {
-            $schemaTool->dropSchema($metadata);
-        } catch (\Throwable) {
-            $dbPath = $connection->getParams()['path'] ?? null;
-            if ($dbPath && file_exists($dbPath)) {
-                $connection->close();
-                @unlink($dbPath);
-                $connection->connect();
-            }
-        }
 
         $schemaTool->createSchema($metadata);
 
@@ -76,7 +73,10 @@ abstract class FunctionalTestCase extends WebTestCase
             $entityManager,
             new \Doctrine\Common\DataFixtures\Purger\ORMPurger($entityManager),
         );
-        $executor->execute($container->get('doctrine.fixtures.loader')->getFixtures());
+
+        $executor->execute(
+            $container->get('doctrine.fixtures.loader')->getFixtures()
+        );
 
         $entityManager->clear();
     }
