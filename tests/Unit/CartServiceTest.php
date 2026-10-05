@@ -20,7 +20,8 @@ class CartServiceTest extends TestCase
     protected function setUp(): void
     {
         $em = $this->createStub(EntityManagerInterface::class);
-        $this->service = new CartService($em);
+        $promotionService = $this->createStub(PromotionService::class);
+        $this->service = new CartService($em, $promotionService);
     }
 
     public function testEmptyCartReturnsZero(): void
