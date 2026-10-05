@@ -6,8 +6,8 @@ use App\Entity\Cart;
 use App\Entity\CartItem;
 use App\Entity\Product;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Service\PromotionService;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CartService
 {
