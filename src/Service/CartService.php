@@ -11,8 +11,7 @@ use App\Service\PromotionService;
 
 class CartService
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager,
-    private readonly PromotionService $promotionService)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly PromotionService $promotionService)
     {
     }
 
