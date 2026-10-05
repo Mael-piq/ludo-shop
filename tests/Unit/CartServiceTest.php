@@ -9,9 +9,9 @@ use App\Entity\CartItem;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Service\CartService;
+use App\Service\PromotionService;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
-use App\Service\PromotionService;
 
 class CartServiceTest extends TestCase
 {
